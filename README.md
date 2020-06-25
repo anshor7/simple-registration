@@ -31,3 +31,6 @@ These instructions will get you a copy of the project up and running on your loc
 `npm run build`
 - run it
 `npm run start`
+
+### Tools
+- import postman collections at api/tools/

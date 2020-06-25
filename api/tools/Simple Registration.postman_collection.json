@@ -1,0 +1,65 @@
+{
+	"info": {
+		"_postman_id": "aecfecb4-e8b2-4f98-8c47-84d4d8832f14",
+		"name": "Simple Registration",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\": \"9555ec2e-4aff-4b7b-b1b7-877614064b3f\",\n\t\"phone\":\"test2\",\n\t\"first_name\":\"test2\",\n\t\"last_name\":\"test2\",\n\t\"dob\":\"12-01-1993\",\n\t\"gender\":\"male\",\n\t\"email\":\"test2@gmail.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/user",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check Unique Fields",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/user/check-unique-field?phone=0888212312122",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"user",
+						"check-unique-field"
+					],
+					"query": [
+						{
+							"key": "phone",
+							"value": "0888212312122"
+						},
+						{
+							"key": "email",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
