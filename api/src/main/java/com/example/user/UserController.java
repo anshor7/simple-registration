@@ -29,7 +29,7 @@ public class UserController {
 	}
 
 	@PostMapping()
-	private ResponseEntity<String> Register(@RequestBody User user) {
+	private ResponseEntity<String> Register(@RequestBody User user) throws Exception {
 		log.info(user.toString());
 		
 		boolean valid = userService.checkUniqueField(user.getPhone(), user.getEmail());

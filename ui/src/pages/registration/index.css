@@ -20,7 +20,6 @@ form {
   min-width: 500px;
   padding: 20px;
   background-color: #fafafa;
-  box-shadow: 4px 5px 5px 1px rgba(0,0,0,0.75);
   border-radius: 3px;
 }
 
@@ -35,8 +34,12 @@ form {
 
 .form-field {
   height: 35px;
-  min-width: 265px;
+  min-width: 950px;
   font-size: 22px;
+}
+
+.form-radio {
+  margin: 10px;
 }
 
 fieldset {
@@ -44,16 +47,24 @@ fieldset {
 }
 
 .footer {
-  min-width: 500px;
+  min-width: 950px;
   min-height: 100px;
   text-align:center;
   margin: 20px;
-  box-shadow: 4px 5px 5px 1px rgba(0,0,0,0.75);
   border-radius: 3px;
-  background-color: #9d1ead;
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 40px;
+  color:white;
+}
+
+.footer-login {
+  background-color: #fafafa;
+}
+
+.footer-non-login {
+  background-color: #9d1ead;
 }
 
 label {
@@ -71,6 +82,7 @@ label {
   display: inline-block;
   font-size: 16px;
   cursor: pointer;
+  min-width: 950px;
 }
 
 button:disabled {
@@ -80,6 +92,7 @@ button:disabled {
 
 .error-msg {
   color: red;
-  margin: 5px 0;
+  margin: 5px 7px;
   font-weight: bold;
+  text-align: right;
 }

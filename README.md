@@ -1,5 +1,5 @@
 # Simple Registration
-A Simple registration. It consists of Java restful API[here](#installing-and-running-the-api) as backend and Reactjs as UI[here](#installing-and-running-the-ui). 
+A Simple registration. It consists of Java restful [API](#installing-and-running-the-api) as backend and Reactjs as [UI](#installing-and-running-the-ui). 
 
 ## Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.

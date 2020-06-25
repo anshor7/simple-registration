@@ -57,6 +57,21 @@ class Registration extends React.Component {
     } else if (!/(?:\+62)?0?8\d{2}(\d{8})/.test(phone)){
       phoneValid = false;
       errorMsg.phone = 'Invalid phone format'
+    } else {
+      axios.get('http://localhost:8080/user/check-unique-field', 
+        {
+          params: {phone: phone}
+        }
+      ).then((response) => {
+          if (response.data === false) {
+            phoneValid = false;
+            errorMsg.phone = 'Phone number already exists';
+            this.setState({phoneValid, errorMsg}, this.validateForm);
+          }
+          console.log('response:', response);
+        }, (error) => {
+          console.log(error);
+      })
     }
 
     this.setState({phoneValid, errorMsg}, this.validateForm)
@@ -119,11 +134,15 @@ class Registration extends React.Component {
   updateDate = (e) => { this.setState({date:e.target.value}, this.validateDob) }
   updateYear = (e) => { this.setState({year:e.target.value}, this.validateDob) }
 
+  updateGender = (gender) => {
+    this.setState({gender})
+  }
+
   updateEmail = (email) => {
     this.setState({email}, this.validateEmail)
   }
 
-  validateEmail = async () => {
+  validateEmail = () => {
     const {email} = this.state;
     let emailValid = true;
     let errorMsg = {...this.state.errorMsg}
@@ -131,6 +150,21 @@ class Registration extends React.Component {
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
       emailValid = false;
       errorMsg.email = 'Invalid email format'
+    } else {
+      axios.get('http://localhost:8080/user/check-unique-field', 
+        {
+          params: {email: email}
+        }
+      ).then((response) => {
+          if (response.data === false) {
+            emailValid = false;
+            errorMsg.email = 'Email already exists';
+            this.setState({emailValid, errorMsg}, this.validateForm);
+          }
+          console.log('response:', response);
+        }, (error) => {
+          console.log(error);
+      })
     }
 
     this.setState({emailValid, errorMsg}, this.validateForm)
@@ -151,17 +185,20 @@ class Registration extends React.Component {
           email: email
         }
       ).then((response) => {
-        console.log('response:', response);
+          console.log('response:', response);
           formSuccess = true;
           this.setState({formSuccess});
         }, (error) => {
-        console.log(error);
+          console.log(error);
       })
-
 
     } else {
       console.log("not ok");
     }
+  }
+
+  handleLogin = () => { // login page is not found in the requirement
+    window.location.reload();
   }
 
   render() {
@@ -220,6 +257,10 @@ class Registration extends React.Component {
                   ))}
                 </select>
                 </div>
+                <div className='form-group' onChange={(e) => this.updateGender(e.target.value)}>
+                  <input type="radio" value="male" className='form-radio' name="gender"/> Male
+                  <input type="radio" value="female" className='form-radio' name="gender"/> Female
+                </div>
                 <div className='form-group'>
                   <ValidationMessage valid={this.state.emailValid} message={this.state.errorMsg.email} />
                   <input placeholder="Email" type='email' id='email' name='email' className='form-field'
@@ -234,12 +275,12 @@ class Registration extends React.Component {
 
         <div className='footer'>
             {this.state.formSuccess ? 
-            <div>
-              <h1> LOGIN </h1>
+            <div className='footer footer-login'>
+              <button className='button' type='submit' onClick={this.handleLogin}>Login</button>
             </div>
             :
-            <div>
-              <h1> FOOTER </h1>
+            <div className='footer footer-non-login'>
+              Footer
             </div>
             }
         </div>
